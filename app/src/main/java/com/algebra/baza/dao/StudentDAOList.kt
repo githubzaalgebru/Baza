@@ -19,7 +19,7 @@ class StudentDAOList : StudentDAO {
         throw IllegalStateException( "No student with id=$id found." )
     }
 
-    override fun getAll( ): List< Student > {
+    override fun getAll( ): MutableList< Student > {
        return students
     }
 

@@ -10,7 +10,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.algebra.baza.model.Student
 
-class StudentsAdapter( val items : List< Student >, val mainActivity : MainActivity ) : RecyclerView.Adapter< StudentsViewHolder >( ) {
+class StudentsAdapter( val items : MutableList< Student >, val mainActivity : MainActivity ) : RecyclerView.Adapter< StudentsViewHolder >( ) {
+
     override fun onCreateViewHolder( parent: ViewGroup, viewType: Int ) : StudentsViewHolder {
         return StudentsViewHolder(
             LayoutInflater
@@ -36,6 +37,12 @@ class StudentsAdapter( val items : List< Student >, val mainActivity : MainActiv
     }
 
     override fun getItemCount( ) = items.size
+
+    fun refresh( noviStudenti : List< Student > ) {
+        items.clear( )
+        items.addAll( noviStudenti )
+        notifyDataSetChanged( )
+    }
 }
 
 class StudentsViewHolder( view : View ) : RecyclerView.ViewHolder( view ) {

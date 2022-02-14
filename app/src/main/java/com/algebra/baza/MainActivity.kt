@@ -7,12 +7,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.algebra.baza.dao.StudentDAO
 import com.algebra.baza.dao.StudentDAOList
+import com.algebra.baza.dao.StudentDaoBaza
 import java.lang.Exception
 
 class MainActivity : AppCompatActivity( ) {
 
 
-    private val dao : StudentDAO = StudentDAOList( )
+//  private val dao : StudentDAO = StudentDAOList( )
+    private val dao : StudentDAO = StudentDaoBaza( )
 
     private lateinit var etName     : EditText
     private lateinit var sYear      : Spinner
@@ -67,7 +69,7 @@ class MainActivity : AppCompatActivity( ) {
     }
 
     private fun refreshStudentsList( ) {
-        rvStudents.adapter?.notifyDataSetChanged( )
+        ( rvStudents.adapter as StudentsAdapter ).refresh( dao.getAll( ) )
     }
 
     fun deleteStudent( id : Int ) {
