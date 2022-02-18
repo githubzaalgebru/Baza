@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity( ) {
 
 
 //  private val dao : StudentDAO = StudentDAOList( )
-    private val dao : StudentDAO = StudentDaoBaza( )
+    private val dao : StudentDAO = StudentDaoBaza( this )
 
     private lateinit var etName     : EditText
     private lateinit var sYear      : Spinner
@@ -76,6 +76,4 @@ class MainActivity : AppCompatActivity( ) {
         dao.delete( id )
         refreshStudentsList( )
     }
-
-
 }

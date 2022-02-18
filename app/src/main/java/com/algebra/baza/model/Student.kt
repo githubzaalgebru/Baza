@@ -6,4 +6,7 @@ class Student( var id : Int, var name : String, var year : Int, var gender : Cha
         return "$name - $year ($gender)"
     }
 
+    fun copy( ) : Student {
+        return Student( id, name, year, gender )
+    }
 }

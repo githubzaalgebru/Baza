@@ -3,6 +3,7 @@ package com.algebra.baza
 
 import android.content.Context
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.algebra.baza.model.Student
 
 class StudentsAdapter( val items : MutableList< Student >, val mainActivity : MainActivity ) : RecyclerView.Adapter< StudentsViewHolder >( ) {
+
+    val TAG = "StudentsAdapter"
 
     override fun onCreateViewHolder( parent: ViewGroup, viewType: Int ) : StudentsViewHolder {
         return StudentsViewHolder(

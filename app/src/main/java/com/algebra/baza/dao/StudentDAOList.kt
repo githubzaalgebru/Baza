@@ -6,6 +6,10 @@ import java.lang.IllegalStateException
 
 class StudentDAOList : StudentDAO {
 
+    init {
+        Log.e( "StudentDAOList", "Object initialized" )
+    }
+
     val TAG : String = "StudentDAOList"
 
     var maxId = 1
@@ -14,13 +18,18 @@ class StudentDAOList : StudentDAO {
     override fun get( id: Int ) : Student {
         students.forEach {
             if( it.id==id )
-                return it
+                return it.copy( )
         }
         throw IllegalStateException( "No student with id=$id found." )
     }
 
     override fun getAll( ): MutableList< Student > {
-       return students
+        val newList = mutableListOf< Student >( )
+        // newList.addAll( students ) NE SMIJEM DAVATI  ORIGINALNE OBJEKTE
+        students.forEach {
+            newList.add( it.copy( ) )
+        }
+       return newList
     }
 
     override fun insert( name : String, year : String, gender : String ) : Student {
@@ -29,7 +38,9 @@ class StudentDAOList : StudentDAO {
             throw IllegalStateException( "You have to provide all the data" )
         val student = Student( maxId, name, year.toInt( ), gender.get( 0 ) )
         maxId = maxId+1
+        Log.i( TAG, "$students" )
         students.add( student )
+        Log.i( TAG, "$students" )
         return student
     }
 
